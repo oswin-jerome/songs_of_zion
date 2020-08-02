@@ -70,7 +70,6 @@ class _OswSlideState extends State<OswSlide> {
               height: 10,
             ),
             Slider(
-              
               value: startValuel,
               min: 10,
               max: 40,

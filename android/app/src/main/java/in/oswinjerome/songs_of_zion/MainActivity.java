@@ -1,4 +1,4 @@
-package com.example.songs_of_zion;
+package in.oswinjerome.songs_of_zion;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

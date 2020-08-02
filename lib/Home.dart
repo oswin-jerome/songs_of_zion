@@ -1,13 +1,16 @@
+import 'package:adcolony/adcolony.dart';
+import 'package:adcolony/banner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import './Display.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import './Drawer.dart';
-
+import 'package:admob_flutter/admob_flutter.dart';
 class Home extends StatelessWidget {
   TextEditingController _noC = TextEditingController();
-
+  AdmobInterstitial interstitialAd;
+  GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
   @override
   Widget build(BuildContext context) {
     openSong(int songNumber) {
@@ -16,9 +19,32 @@ class Home extends StatelessWidget {
           MaterialPageRoute(builder: (context) => Display(songNumber)));
     }
 
+
+  AdColony.init(AdColonyOptions("app3da4bfb670ca4c4489", '0', [
+    'vz1772caf266b34058a3',
+    "vzefb74845c36d4bba80"
+  ]));
+
+  listener(AdColonyAdListener event) {
+    print(event);
+    if (event == AdColonyAdListener.onRequestFilled)
+      AdColony.show();
+  }
+
+   interstitialAd = AdmobInterstitial(
+      adUnitId: "ca-app-pub-5374987389919062/7841075501",
+      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+        if (event == AdmobAdEvent.closed) interstitialAd.load();
+        print('Interstitial');
+      },
+    );
+
+  interstitialAd.load();
+
     return Hero(
       tag: "H1",
       child: Scaffold(
+        key: scaffoldState,
         appBar: AppBar(
           backgroundColor: Color(0xffff9966),
           elevation: 0,
@@ -73,6 +99,8 @@ class Home extends StatelessWidget {
                         RaisedButton(
                           shape: CircleBorder(),
                           onPressed: () {
+                            interstitialAd.show();
+                            AdColony.request("vzefb74845c36d4bba80", listener);
                             if (_noC.text == "") {
                               print("Alert Enter a value");
                               Fluttertoast.showToast(
@@ -111,7 +139,11 @@ class Home extends StatelessWidget {
                     ),
                   ),
                   margin: EdgeInsets.only(bottom: 10),
-                )
+                ),
+                BannerView((e)=>{
+                  print("ad loaded")
+                }, BannerSizes.banner,"vz1772caf266b34058a3"),
+                AdmobBanner(adUnitId: "ca-app-pub-5374987389919062/1280370732", adSize: AdmobBannerSize.BANNER)
               ],
             ),
           ),

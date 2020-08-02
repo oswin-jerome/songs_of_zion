@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -52,6 +53,11 @@ class _DisplayState extends State<Display> {
             backgroundColor: Colors.black87,
             title: Text(widget.songNumber.toString()),
           ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: AdmobBanner(
+              adUnitId: "ca-app-pub-5374987389919062/3326636490",
+              adSize: AdmobBannerSize.BANNER),
           body: GestureDetector(
             onHorizontalDragUpdate: (a) {
               print(a.primaryDelta);
@@ -72,23 +78,22 @@ class _DisplayState extends State<Display> {
                 loadSong(widget.songNumber);
               }
             },
-
-            onScaleUpdate: (a){
+            onScaleUpdate: (a) {
               print(a.horizontalScale.toStringAsFixed(2));
-              if(pre != a.scale.truncateToDouble()){
-                pre=double.parse(a.horizontalScale.toStringAsFixed(2));
-                if(int.parse(a.horizontalScale.toStringAsFixed(2))>1){
-                  if(fontSize<40){
+              if (pre != a.scale.truncateToDouble()) {
+                pre = double.parse(a.horizontalScale.toStringAsFixed(2));
+                if (int.parse(a.horizontalScale.toStringAsFixed(2)) > 1) {
+                  if (fontSize < 40) {
                     setState(() {
-                      fontSize += .5; 
+                      fontSize += .5;
                     });
                   }
                 }
 
-                if(int.parse(a.horizontalScale.toStringAsFixed(2))<1){
-                  if(fontSize>20){
+                if (int.parse(a.horizontalScale.toStringAsFixed(2)) < 1) {
+                  if (fontSize > 20) {
                     setState(() {
-                      fontSize -= .5; 
+                      fontSize -= .5;
                     });
                   }
                 }
@@ -96,8 +101,10 @@ class _DisplayState extends State<Display> {
             },
             child: Container(
               color: Colors.black87,
+              padding: EdgeInsets.only(bottom: 0),
               child: ListView.builder(
                 itemCount: list.length,
+                padding: EdgeInsets.only(bottom: 80),
                 itemBuilder: (BuildContext ctx, int index) {
                   return Container(
                     child: Text(
