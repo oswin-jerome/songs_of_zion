@@ -7,6 +7,7 @@ import './Display.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import './Drawer.dart';
 import 'package:admob_flutter/admob_flutter.dart';
+
 class Home extends StatelessWidget {
   TextEditingController _noC = TextEditingController();
   AdmobInterstitial interstitialAd;
@@ -19,19 +20,15 @@ class Home extends StatelessWidget {
           MaterialPageRoute(builder: (context) => Display(songNumber)));
     }
 
+    AdColony.init(AdColonyOptions("app3da4bfb670ca4c4489", '0',
+        ['vz1772caf266b34058a3', "vzefb74845c36d4bba80"]));
 
-  AdColony.init(AdColonyOptions("app3da4bfb670ca4c4489", '0', [
-    'vz1772caf266b34058a3',
-    "vzefb74845c36d4bba80"
-  ]));
+    listener(AdColonyAdListener event) {
+      print(event);
+      if (event == AdColonyAdListener.onRequestFilled) AdColony.show();
+    }
 
-  listener(AdColonyAdListener event) {
-    print(event);
-    if (event == AdColonyAdListener.onRequestFilled)
-      AdColony.show();
-  }
-
-   interstitialAd = AdmobInterstitial(
+    interstitialAd = AdmobInterstitial(
       adUnitId: "ca-app-pub-5374987389919062/7841075501",
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
         if (event == AdmobAdEvent.closed) interstitialAd.load();
@@ -39,7 +36,7 @@ class Home extends StatelessWidget {
       },
     );
 
-  interstitialAd.load();
+    interstitialAd.load();
 
     return Hero(
       tag: "H1",
@@ -99,8 +96,6 @@ class Home extends StatelessWidget {
                         RaisedButton(
                           shape: CircleBorder(),
                           onPressed: () {
-                            interstitialAd.show();
-                            AdColony.request("vzefb74845c36d4bba80", listener);
                             if (_noC.text == "") {
                               print("Alert Enter a value");
                               Fluttertoast.showToast(
@@ -140,10 +135,9 @@ class Home extends StatelessWidget {
                   ),
                   margin: EdgeInsets.only(bottom: 10),
                 ),
-                BannerView((e)=>{
-                  print("ad loaded")
-                }, BannerSizes.banner,"vz1772caf266b34058a3"),
-                AdmobBanner(adUnitId: "ca-app-pub-5374987389919062/1280370732", adSize: AdmobBannerSize.BANNER)
+                AdmobBanner(
+                    adUnitId: "ca-app-pub-5374987389919062/1280370732",
+                    adSize: AdmobBannerSize.BANNER)
               ],
             ),
           ),
