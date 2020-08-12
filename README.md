@@ -1,5 +1,3 @@
-# songs_of_zion
-
 
 <html lang="en">
 <head>
@@ -12,23 +10,22 @@
 <div class="container text-center">
 <h1 class="mt-5 text-center heading text-muted">Songs of Zion (v1.0.1)</h1>
 <h6>by <a href="https://oswin1998.cf/">Oswin Jerome</a></h6>
-<a href="../build/app/outputs/apk/release/app-release.apk" class="btn btn-success mt-4">Download</a>
+<a href="./app-release.apk" class="btn btn-success mt-4">Download</a>
 
 <div class="images row mt-5 mb-5">
-            <div class="col-3 col-sm-6">
+            <div class="col-3 ">
                 <img src="./img1.png" class="w-100" alt="" srcset="">
             </div>
-            <div class="col-3 col-sm-6">
+            <div class="col-3 ">
                 <img src="./img2.png" class="w-100" alt="" srcset="">
             </div>
-            <div class="col-3 col-sm-6">
+            <div class="col-3 ">
                 <img src="./img3.png" class="w-100" alt="" srcset="">
             </div>
-            <div class="col-3 col-sm-6">
+            <div class="col-3 ">
                 <img src="./img4.png" class="w-100" alt="" srcset="">
             </div>
         </div>
-
 </div>
 </body>
 </html>
