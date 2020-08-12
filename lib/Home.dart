@@ -20,14 +20,6 @@ class Home extends StatelessWidget {
           MaterialPageRoute(builder: (context) => Display(songNumber)));
     }
 
-    AdColony.init(AdColonyOptions("app3da4bfb670ca4c4489", '0',
-        ['vz1772caf266b34058a3', "vzefb74845c36d4bba80"]));
-
-    listener(AdColonyAdListener event) {
-      print(event);
-      if (event == AdColonyAdListener.onRequestFilled) AdColony.show();
-    }
-
     interstitialAd = AdmobInterstitial(
       adUnitId: "ca-app-pub-5374987389919062/7841075501",
       listener: (AdmobAdEvent event, Map<String, dynamic> args) {
