@@ -72,7 +72,7 @@ class _OswSlideState extends State<OswSlide> {
             Slider(
               value: startValuel,
               min: 10,
-              max: 40,
+              max: 60,
               onChanged: (v) {
                 setState(() {
                   startValuel = v.floorToDouble();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './Drawer.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -55,7 +56,7 @@ class AboutPage extends StatelessWidget {
               ),
               Container(
                 child: GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     launchURL() async {
                       const url = 'https://oswin1998.cf';
                       if (await canLaunch(url)) {
@@ -64,6 +65,7 @@ class AboutPage extends StatelessWidget {
                         throw 'Could not launch $url';
                       }
                     }
+
                     launchURL();
                   },
                   child: Container(
@@ -71,7 +73,7 @@ class AboutPage extends StatelessWidget {
                     height: 50,
                     child: Center(
                         child: Text(
-                      "oswin1998.cf",
+                      "oswinjerome.in",
                       style: TextStyle(
                           color: Color(0xffff5e62),
                           fontWeight: FontWeight.bold,

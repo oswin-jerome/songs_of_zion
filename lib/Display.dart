@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -53,11 +52,6 @@ class _DisplayState extends State<Display> {
             backgroundColor: Colors.black87,
             title: Text(widget.songNumber.toString()),
           ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: AdmobBanner(
-              adUnitId: "ca-app-pub-5374987389919062/3326636490",
-              adSize: AdmobBannerSize.BANNER),
           body: GestureDetector(
             onHorizontalDragUpdate: (a) {
               print(a.primaryDelta);

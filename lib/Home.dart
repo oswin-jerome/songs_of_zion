@@ -1,16 +1,12 @@
-import 'package:adcolony/adcolony.dart';
-import 'package:adcolony/banner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import './Display.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import './Drawer.dart';
-import 'package:admob_flutter/admob_flutter.dart';
 
 class Home extends StatelessWidget {
   TextEditingController _noC = TextEditingController();
-  AdmobInterstitial interstitialAd;
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
   @override
   Widget build(BuildContext context) {
@@ -19,16 +15,6 @@ class Home extends StatelessWidget {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => Display(songNumber)));
     }
-
-    interstitialAd = AdmobInterstitial(
-      adUnitId: "ca-app-pub-5374987389919062/7841075501",
-      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-        if (event == AdmobAdEvent.closed) interstitialAd.load();
-        print('Interstitial');
-      },
-    );
-
-    interstitialAd.load();
 
     return Hero(
       tag: "H1",
@@ -127,9 +113,6 @@ class Home extends StatelessWidget {
                   ),
                   margin: EdgeInsets.only(bottom: 10),
                 ),
-                AdmobBanner(
-                    adUnitId: "ca-app-pub-5374987389919062/1280370732",
-                    adSize: AdmobBannerSize.BANNER)
               ],
             ),
           ),
