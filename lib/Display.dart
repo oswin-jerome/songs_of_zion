@@ -14,7 +14,7 @@ class Display extends StatefulWidget {
 class _DisplayState extends State<Display> {
   var list = [];
   var pos = 0.0;
-  double fontSize;
+  double fontSize = 16;
   double pre = 0.0;
   @override
   void initState() {
@@ -56,16 +56,16 @@ class _DisplayState extends State<Display> {
             onHorizontalDragUpdate: (a) {
               print(a.primaryDelta);
               setState(() {
-                pos += a.primaryDelta;
+                pos += a.primaryDelta ?? 0;
               });
             },
             onHorizontalDragEnd: (d) {
-              if (d.primaryVelocity > 800) {
+              if (d.primaryVelocity! > 800) {
                 setState(() {
                   widget.songNumber--;
                 });
                 loadSong(widget.songNumber);
-              } else if (d.primaryVelocity < -800) {
+              } else if (d.primaryVelocity! < -800) {
                 setState(() {
                   widget.songNumber++;
                 });

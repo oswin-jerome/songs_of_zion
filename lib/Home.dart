@@ -27,6 +27,7 @@ class Home extends StatelessWidget {
         drawer: DrawerCustom("Home"),
         body: SizedBox.expand(
           child: Container(
+            padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [
               Color(0xffff9966),
@@ -71,19 +72,18 @@ class Home extends StatelessWidget {
                         SizedBox(
                           height: 30,
                         ),
-                        RaisedButton(
-                          shape: CircleBorder(),
+                        ElevatedButton(
                           onPressed: () {
                             if (_noC.text == "") {
                               print("Alert Enter a value...");
                               Fluttertoast.showToast(
-                                  msg: "Enter a song number",
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.CENTER,
-                                  timeInSecForIos: 1,
-                                  backgroundColor: Colors.red,
-                                  textColor: Colors.white,
-                                  fontSize: 16.0);
+                                msg: "Enter a song number",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0,
+                              );
                             } else {
                               openSong(int.parse(_noC.text));
                             }
